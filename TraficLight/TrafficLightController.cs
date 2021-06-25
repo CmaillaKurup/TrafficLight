@@ -14,44 +14,56 @@ namespace TraficLight
             trafficLight.Start();
         }
 
+        TrafficLight tl = new TrafficLight(false, false, false);
 
         public void TurnLightOn()
         {
-            TrafficLight tl = new TrafficLight(true, false, false);
-
             while (true)
             {
-                LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
-
-                if (tl.red == true)
+                if (tl.red != true)
                 {
-                    Thread.Sleep(1000);
-
-                    tl.yellow = true;
-                    //tl.red = false;
-                }
-                else if (tl.yellow == true)
-                {                   
-                    Thread.Sleep(1000);
-
-                    tl.green = true;
-                    //tl.yellow = false;
-                }
-                else if (tl.green == true)
-                {
-                    Thread.Sleep(1000);
-
                     tl.red = true;
-                    //tl.green = false;
-                    
-                }
-                else
-                {
+                    Thread.Sleep(5000);
+                    LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
                     tl.red = false;
+                }
+                if (tl.yellow != true)
+                {
+                    tl.yellow = true;
+                    Thread.Sleep(5000);
+                    LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
                     tl.yellow = false;
+                }
+                if (tl.green != true)
+                {
+                    tl.green = true;
+                    Thread.Sleep(1000);
+                    LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
                     tl.green = false;
                 }
             }
         }
+        
+        public void TurnLightOff(TrafficLight t)
+        {
+            if (t.red)
+            {
+                tl.green = false;
+                tl.yellow = false;
+                LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
+            }
+            if (t.yellow)
+            {
+                tl.red = false;
+                tl.green = false;
+                LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
+            }
+            if (t.green)
+            {
+                tl.red = false;
+                tl.yellow = false;
+                LightChanged?.Invoke(this, new TrafficLightEventArgs(tl));
+            }
+        }       
     }
 }

@@ -6,11 +6,11 @@ namespace TraficLight
 {
     class TrafficLightEventArgs : EventArgs
     {
-        public TrafficLight on { get; set; }
+        public TrafficLight trafficLight { get; set; }
 
-        public TrafficLightEventArgs(TrafficLight on)
+        public TrafficLightEventArgs(TrafficLight trafficLight)
         {
-            this.on = on;
+            this.trafficLight = trafficLight;
         }
     }
 }

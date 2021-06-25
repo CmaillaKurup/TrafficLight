@@ -32,61 +32,34 @@ namespace TraficLight
         {
             if (e is TrafficLightEventArgs)
             {
-                    TurnOff(e);
-
-                if (((TrafficLightEventArgs)e).on.red)
+                if (((TrafficLightEventArgs)e).trafficLight.red)
                 {
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
                     {
                         Red.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                        Yellow.Fill = new SolidColorBrush(Color.FromRgb(128, 128, 0));
+                        Green.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
                     }));
                 }
-                if (((TrafficLightEventArgs)e).on.yellow)
+                if (((TrafficLightEventArgs)e).trafficLight.yellow)
                 {
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
                     {
                         Yellow.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-                    }));
-                }
-                if (((TrafficLightEventArgs)e).on.green)
-                {
-                  
-                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-                    {
+                        Red.Fill = new SolidColorBrush(Color.FromRgb(139, 0, 0));
                         Green.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
                     }));
                 }
+                if (((TrafficLightEventArgs)e).trafficLight.green)
+                {  
+                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
+                    {
+                        Green.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                        Red.Fill = new SolidColorBrush(Color.FromRgb(139, 0, 0));
+                        Yellow.Fill = new SolidColorBrush(Color.FromRgb(128, 128, 0));
+                    }));
+                }
             }
-        }
-        
-        private void TurnOff(EventArgs e)
-        {
-            if (((TrafficLightEventArgs)e).on.Equals(true))
-            {
-                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-                {
-                    Red.Fill = new SolidColorBrush(Color.FromRgb(255, 34, 1));
-                }));
-
-                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-                {
-                    Yellow.Fill = new SolidColorBrush(Color.FromRgb(255, 62, 68));
-                }));
-
-                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-                {
-                    Green.Fill = new SolidColorBrush(Color.FromRgb(255, 20, 27));
-                }));
-            }
-            
-            /*
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-            {
-                Red.Fill = new SolidColorBrush(Color.FromRgb(255, 34, 1));
-                Yellow.Fill = new SolidColorBrush(Color.FromRgb(255, 62, 68));
-                Green.Fill = new SolidColorBrush(Color.FromRgb(255, 20, 27));
-            }));
-            */
         }
     }
 }

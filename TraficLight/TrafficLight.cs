@@ -17,5 +17,6 @@ namespace TraficLight
             this.yellow = yellow;
             this.green = green;
         }
+
     }
 }
