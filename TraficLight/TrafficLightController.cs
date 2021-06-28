@@ -7,15 +7,20 @@ namespace TraficLight
 {
     class TrafficLightController
     {
+        //This is a referance for my eventhandeler.
         public event EventHandler LightChanged;
+
+        //here I createts and start a thread that has the purpos of handeling the lights
         public TrafficLightController()
         {
             Thread trafficLight = new Thread(TurnLightOn);
             trafficLight.Start();
         }
 
+        //I create an object of my trafficlight
         TrafficLight tl = new TrafficLight(false, false, false);
 
+        //this metheode controles turning on the light
         public void TurnLightOn()
         {
             while (true)
@@ -44,6 +49,7 @@ namespace TraficLight
             }
         }
         
+        //this metheode controles to turn of the light
         public void TurnLightOff(TrafficLight t)
         {
             if (t.red)

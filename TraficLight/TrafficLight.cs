@@ -4,6 +4,7 @@ using System.Text;
 
 namespace TraficLight
 {
+    //this class is my lights 
     class TrafficLight
     {
         public bool red { get; set; }
@@ -17,6 +18,5 @@ namespace TraficLight
             this.yellow = yellow;
             this.green = green;
         }
-
     }
 }

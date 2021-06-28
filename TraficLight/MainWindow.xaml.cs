@@ -28,6 +28,7 @@ namespace TraficLight
             tl.LightChanged += TrafficLightController;
         }
 
+        //here I tell the application what to do in the event when a new event is taking place
         private void TrafficLightController(object sender, EventArgs e)
         {
             if (e is TrafficLightEventArgs)
